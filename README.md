@@ -1,23 +1,26 @@
-# DNA Based Vertebrate Classification 🧬
+# DNA-Based Vertebrate Classification 🧬
 
-[cite_start]Bu projenin amacı, omurgalı canlılara ait DNA dizilerini (COI geni) kullanarak örneklerin hangi sınıfa ait olduğunu makine öğrenmesi yöntemiyle tahmin etmektir[cite: 3].
+A machine learning project designed to classify vertebrate species into four main classes (Mammals, Reptiles, Birds, and Fish) using DNA sequence analysis.
 
-## 📋 Proje Özeti
-* [cite_start]**Veri Kaynağı:** NCBI GenBank (COI ve mitokondriyal DNA bölgeleri)[cite: 7, 8].
-* [cite_start]**Sınıflar:** Memeliler, Sürüngenler, Kuşlar ve Balıklar[cite: 4].
-* [cite_start]**Yöntem:** k-mer frekans analizi ($k=3$) ile 64 sayısal özellik çıkarılmıştır[cite: 15, 16].
-* [cite_start]**Algoritmalar:** Random Forest ve Support Vector Machine (SVM)[cite: 19].
+## 📌 Project Purpose
+[cite_start]The goal of this project is to predict the class of vertebrate animals by processing their DNA sequences through machine learning techniques[cite: 3]. [cite_start]The study focuses on four classes: **Mammals, Reptiles, Birds, and Fish**[cite: 4].
 
-## 📊 Performans Sonuçları
-Model, 8000 örnekten oluşan genişletilmiş veri seti üzerinde test edilmiştir:
-* [cite_start]**Accuracy:** %98.65 [cite: 22]
-* [cite_start]**Doğrulama:** 5-Fold Cross Validation uygulanmıştır[cite: 13].
+## 🧬 Methodology
+- [cite_start]**Data Source:** Primary data is obtained from the **NCBI GenBank** database, focusing on mitochondrial DNA and the **COI gene**[cite: 7, 8].
+- [cite_start]**Feature Extraction:** DNA sequences are converted into numerical form using **k-mer frequency analysis** with $k=3$[cite: 15].
+- [cite_start]**Feature Set:** The model utilizes $4^3 = 64$ k-mer features, supplemented by **GC content** and **sequence length**[cite: 16].
+- [cite_start]**Algorithms:** A comparative analysis is performed using **Random Forest** and **Support Vector Machine (SVM)**[cite: 19].
 
-## 🛠️ Kurulum
-1. `pip install -r requirements.txt`
-2. `python index.py` (Veri toplama)
-3. `python train.py` (Model eğitimi ve analiz)
-4. `python predict.py` (Canlı tahmin)
+## 📊 Performance & Results
+- **Dataset Size:** Scaled up to ~8000 samples for robust generalization.
+- **Accuracy:** Reached a high performance of **98.65%** on the test set.
+- [cite_start]**Validation:** 5-Fold Cross-Validation was applied to ensure the model's reliability[cite: 13].
+- [cite_start]**Metrics:** Evaluated using Accuracy, Precision, Recall, and F1-Score[cite: 22].
 
-## 📈 Çıktılar
-[cite_start]Proje sonunda Karmaşıklık Matrisi (Confusion Matrix) ve Özellik Önem Analizi (Feature Importance) grafikleri elde edilmektedir[cite: 24].
+
+
+## 🛠️ Project Structure
+- `index.py`: Automated DNA sequence retrieval from NCBI.
+- `analiz.py`: k-mer feature extraction and dataset creation.
+- `train.py`: Model training, hyperparameter tuning, and error analysis.
+- `predict.py`: Live prediction script for classifying custom DNA sequences.
