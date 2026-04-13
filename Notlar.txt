@@ -1,0 +1,30 @@
+v4.0 Evrensel Biyoinformatik Özellikler
+Modelimize sadece harf saymayı değil, şu 3 devasa biyolojik boyutu öğreteceğiz:
+**************************************************************************************
+----------------------------------------------------------------------------------
+**************************************************************************************
+CpG Adacıkları (Methylation Signature): Memelilerde CG ikilisi baskılanırken,
+ balık ve sürüngenlerde bu oran çok daha yüksektir. 
+Bu, "soğukkanlı vs. sıcakkanlı" ayrımı için dev bir veridir.
+
+
+Neden CpG Adacıklarını Entegre Ediyoruz?Biyolojide CpG, bir Sitozin (C) nükleotidinin ardından bir Guanin (G) gelmesi durumudur. Bu ikili, memeliler ve diğer omurgalılar arasında devasa bir ayrım noktasıdır:DNA Metilasyonu: Memelilerde CpG bölgeleri genellikle "metillenir". Metillenen Sitozinler zamanla Timin'e (T) dönüşür. Bu yüzden memeli genomunda "CG" ikilisi, istatistiksel olarak olması gerekenden çok daha az bulunur.Sınıf Ayrımı: Balıklar ve sürüngenlerde bu baskılanma memeliler kadar şiddetli değildir. Kuşlar ise bu konuda ikisinin arasındadır.Hata Payını Azaltma: Eğer modelimiz bir dizinin k-mer'lerine bakıp "Kuş mu Memeli mi?" diye tereddüt ederse, CpG Oranına bakacaktır. Eğer CG sayısı beklenenden çok düşükse (Ratio < 0.3 gibi), sistem "Bu kesinlikle bir memeli" diyerek kararı düzeltecektir.🛠️ Nasıl Entegre Ettik? (Matematiksel Mantık)Kod içerisinde bu oranı Observed/Expected (Gözlenen/Beklenen) formülüyle hesaplıyoruz:$$CpG\ Ratio = \frac{Count(CG)}{\frac{Count(C) \times Count(G)}{Length}}$$Bu formül bize şunu söyler: "Eğer C ve G harfleri tamamen rastgele dağılsaydı kaç tane CG yan yana gelirdi, peki gerçekte kaç tane var?"
+**************************************************************************************
+----------------------------------------------------------------------------------
+**************************************************************************************
+
+Moleküler Ağırlık ve pI (Isoelectric Point): DNA'nın kodladığı proteinin net elektriksel yükü. Balık proteinleri genellikle daha farklı pH değerlerinde kararlıdır.
+
+
+
+
+
+----------------------------------------------------------------------------------
+Shannon Entropisi (Complexity): Dizinin bilgi yoğunluğu. Kuş genomları çok "kompakt" iken, sürüngen genomlarında çok fazla tekrar eden (low-complexity) bölge bulunur.
+----------------------------------------------------------------------------------
+Hidrofobik İndeks Mantığı (Kyte-Doolittle)
+Her 3 nükleotidi (kodon) bir amino asit gibi düşünüp, ona bilimsel bir "su sevmeme" puanı vereceğiz. Örneğin:
+
+İzolösin (Ile): 4.5 (Çok hidrofobik - suyu hiç sevmez)
+
+Arjinin (Arg): -4.5 (Çok hidrofilik - suyu çok sever)

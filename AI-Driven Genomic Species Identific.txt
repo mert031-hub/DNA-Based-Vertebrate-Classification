@@ -1,0 +1,84 @@
+                  AI-Driven Genomic Species Identification
+
+1)Teknoloji Yığını: Python, Streamlit, Scikit-Learn, SHAP, Biyoinformatik Veri Mühendisliği
+
+
+2) Veri Mühendisliği ve İşleme (Data Pipeline)
+Proje kapsamında 80.000'den fazla COI (Sitokrom C Oksidaz Alt Birimi I) gen dizisi işlenmiştir. Ham DNA verilerini (A,T,G,C) anlamlı sayısal verilere dönüştürmek için şu teknikler uygulanmıştır:
+
+k-mer Vektörizasyonu: 5-gram (1024 boyutlu) alt dizilim frekans analizi.
+
+Kodon Kullanım Eğilimi (Codon Usage Bias): 64 standart kodonun frekans dağılımı.
+
+Biyometrik Parametreler: Shannon Entropisi, CpG Oranı, Moleküler Ağırlık, İzoelektrik Nokta (pI) ve Hidrofobik İndeks.
+
+*************************************************************************************
+*************************************************************************************
+
+3. Model Mimarisi (Hybrid Ensemble)
+Sistem, iki farklı algoritmanın güçlü yönlerini birleştiren bir Hibrit Ensemble yapısı kullanır:
+
+Random Forest Pro: Karmaşık ve doğrusal olmayan biyolojik ilişkileri yakalamak için 300 ağaçlı konfigürasyon.
+
+LinearSVC (Support Vector Machine): Yüksek boyutlu (1093 özellik) veri setlerinde hızlı ve keskin sınıflandırma sınırları belirlemek için.
+
+Calibration: SVM çıktılarını olasılık skorlarına dönüştürerek "Güven Oranı" (Confidence) hesaplaması sağlanmıştır.
+
+
+*************************************************************************************
+*************************************************************************************
+
+
+4. Teknik Zorluklar ve "IQ-Engine" Gelişimi
+Proje süresince karşılaşılan en büyük engel, modelin sadece GC Oranı gibi kolay belirteçlere odaklanarak (bias) biyolojik derinliği ıskalamasıydı.
+
+Vaka Analizi: Aslan (Panthera leo) dizisinin başlangıçta "Kuş" olarak sınıflandırılması, evrimsel yakınlık (Convergence) sorununu ortaya çıkardı.
+
+Çözüm: Feature Importance analizi (SHAP) yapılarak modelin kararları denetlendi. Özellik mühendisliği ve parametre optimizasyonu (v6.1 Restoration) ile modelin hem dürüst hem de yüksek doğruluğa sahip dengeli bir noktaya gelmesi sağlandı.
+
+*************************************************************************************
+*************************************************************************************
+
+
+(.venv) PS D:\Masaüstü\Yapay zeka proje> python train.py
+📂 Veri seti yükleniyor...
+✅ Dataset yüklendi (float32 optimize). Toplam satır: 141778
+⚖️ Veri bölünüyor ve ölçeklendiriliyor...
+
+==================================================
+🔥 Triple-Engine Stacking (v7.2) Eğitimi Başlıyor...
+🛡️ RAM Koruma Modu Aktif (float32 + CV=3)
+==================================================
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+[Parallel(n_jobs=2)]: Done   3 out of   3 | elapsed: 19.9min finished
+[Parallel(n_jobs=2)]: Using backend ThreadingBackend with 2 concurrent workers.
+D:\Masaüstü\Yapay zeka proje\.venv\lib\site-packages\sklearn\svm\_base.py:1250: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+[Parallel(n_jobs=2)]: Done   3 out of   3 | elapsed: 19.8min finished
+D:\Masaüstü\Yapay zeka proje\.venv\lib\site-packages\sklearn\svm\_base.py:1250: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
+  warnings.warn(
+[Parallel(n_jobs=2)]: Done   3 out of   3 | elapsed: 63.1min finished
+
+✅ Eğitim başarıyla tamamlandı! Geçen süre: 132.46 dakika.
+
+📊 Değerlendirme yapılıyor...
+
+🏆 Stacking Doğruluğu: %99.34
+              precision    recall  f1-score   support
+
+        bird       1.00      1.00      1.00      7229
+        fish       0.99      0.99      0.99      7381
+      mammal       0.99      1.00      0.99      7312
+     reptile       0.99      0.99      0.99      6434
+
+    accuracy                           0.99     28356
+   macro avg       0.99      0.99      0.99     28356
+weighted avg       0.99      0.99      0.99     28356
+
+
+💾 Kaydediliyor...
+
+==================================================
+🏆 SİSTEM v7.2 HAZIR!
+==================================================

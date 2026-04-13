@@ -1,0 +1,20 @@
+------Scikit-learn (sklearn)----------------
+
+Python programlama dili için geliştirilmiş, ücretsiz ve açık kaynaklı en popüler makine öğrenimi kütüphanesidir.
+Sınıflandırma, regresyon, kümeleme ve veri ön işleme gibi işlemleri kolaylaştıran bu araç;
+NumPy, SciPy ve Matplotlib üzerine inşa edilmiştir.
+Özellikle makine öğrenmesine giriş ve hızlı prototipleme için idealdir.------
+
+------------------------------------------------------------------------------------------------
+                                            --JOBLIB NEDIR ?-- 
+python'da işlemci gücü ve zaman açısından sıkıntılı pipeline'ları daha verimli işlemeye yarayan bir kütüphane.
+büyük veri setlerini okuyup işlemede numpy dizilerine yönelik optimizasyonlarla bu işlevi yerine getiriyor.
+örneğin 20 binden fazla fotoğrafın olduğu bir klasörünüz bulunuyor. 
+bu fotoğraflarda bulunan hayvanları tanımaya yönelik bir model kurmak istiyorsunuz
+bu modeli kurup eğitmeden önce bunları okumanız, birtakım işlemlerle nümerik hale getirmeniz gerekiyor.
+-------------------------------------------------------------------------------------------------
+                                     IterTools
+Python'da verimli döngüler ve yineleyiciler (iterators) oluşturmak için kullanılan yerleşik (built-in) bir kütüphanedir.
+Bellek kullanımını optimize eder, hızlı çalışır ve karmaşık yineleme işlemlerini (kombinasyon, permütasyon, sonsuz döngüler)
+az kodla yapmayı sağlayan"yineleyici cebiri" sunar. 
+-------------------------------------------------------------------------------------------------
